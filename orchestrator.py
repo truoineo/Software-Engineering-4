@@ -77,4 +77,8 @@ Orchestrator_Agent = create_agent(
     tools=[call_instruction_parser_agent, call_scene_descriptor_agent, call_image_generator_agent]
 )
 
-Orchestrator_Agent.invoke({"messages": [{"role": "user", "content": "Create cooking visualization images for 'Spaghetti Carbonara' recipe"}]})
+dish = input("What do you want to cook today?")
+human_message = HumanMessage(content=dish)
+response = Orchestrator_Agent.invoke({"messages": [human_message]})
+
+print(response["messages"][-1].content)
